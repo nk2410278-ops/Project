@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>GoldenCraft AI | NAVEEN M — Artisan Intelligence</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0A0A;
+            color: #EAEAEA;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --gold-dark: #B8860B;
+            --black: #0A0A0A;
+            --black-soft: #111111;
+            --white: #FFFFFF;
+            --gray-muted: #A0A0A0;
+            --card-bg: rgba(20, 20, 20, 0.85);
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        section {
+            padding: 100px 5%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.9rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--white) 30%, var(--gold) 80%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--gray-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        /* Buttons - FULLY FUNCTIONAL */
+        .btn-gold {
+            background: linear-gradient(95deg, var(--gold) 0%, #E4B83E 100%);
+            color: #0A0A0A;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 48px;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 14px rgba(212,175,55,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(212,175,55,0.5);
+            background: linear-gradient(95deg, #E4B83E, var(--gold));
+        }
+
+        .btn-gold:active {
+            transform: translateY(2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 28px;
+            border-radius: 48px;
+            font-weight: 600;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: rgba(212,175,55,0.15);
+            transform: scale(0.98);
+        }
+
+        .btn-outline:active {
+            transform: scale(0.96);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(212,175,55,0.25);
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(125deg, #FFF, var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links a {
+            margin-left: 32px;
+            font-weight: 500;
+            transition: 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        .nav-links a:hover { color: var(--gold); }
+
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg-glow {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, rgba(0,0,0,0) 70%);
+            top: 10%;
+            left: 10%;
+            z-index: -1;
+            animation: pulseGlow 6s infinite alternate;
+        }
+        @keyframes pulseGlow {
+            0% { opacity: 0.3; transform: scale(1);}
+            100% { opacity: 0.8; transform: scale(1.05);}
+        }
+        .hero h1 {
+            font-size: 4.4rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .floating-icon {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px);}
+            50% { transform: translateY(-12px);}
+            100% { transform: translateY(0px);}
+        }
+
+        .grid-2, .grid-3 {
+            display: grid;
+            gap: 2rem;
+        }
+        .grid-2 { grid-template-columns: repeat(2,1fr); }
+        .grid-3 { grid-template-columns: repeat(3,1fr); }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            padding: 2rem;
+            border: 1px solid rgba(212,175,55,0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 25px 35px -12px rgba(212,175,55,0.25);
+        }
+        .card i {
+            font-size: 2.8rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .concept-item {
+            background: #121212;
+            border-radius: 28px;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid var(--gold);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .concept-item:hover { transform: scale(1.02); background: #1a1a1a; }
+
+        .testimonial-card {
+            background: rgba(20,20,20,0.7);
+            border-radius: 28px;
+            padding: 1.8rem;
+            transition: 0.2s;
+        }
+        .stars { color: var(--gold); margin-bottom: 1rem; }
+
+        .faq-item {
+            background: rgba(30,30,30,0.7);
+            margin-bottom: 1rem;
+            border-radius: 24px;
+            padding: 1.2rem 1.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .faq-question { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: 0.4s ease;
+            color: #ccc;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 180px;
+            padding-top: 1rem;
+        }
+
+        .contact-card {
+            background: #111;
+            padding: 2.5rem;
+            border-radius: 32px;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        input, textarea {
+            width: 100%;
+            background: #1e1e1e;
+            border: 1px solid #333;
+            padding: 14px 18px;
+            border-radius: 40px;
+            color: white;
+            margin-top: 0.8rem;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 6px rgba(212,175,55,0.4);
+        }
+        .personal-detail-card {
+            background: #0d0d0d;
+            border-radius: 28px;
+            padding: 1.8rem;
+            margin-top: 2rem;
+            border-left: 5px solid var(--gold);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(212,175,55,0.2);
+        }
+        @media (max-width: 900px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.8rem; }
+            h2 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.8s ease;
+        }
+        .fade-up.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gold-text { color: var(--gold); }
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1a1a1a;
+            border-left: 4px solid var(--gold);
+            padding: 14px 24px;
+            border-radius: 12px;
+            color: var(--gold);
+            font-weight: 500;
+            z-index: 9999;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            animation: slideIn 0.3s ease;
+            pointer-events: none;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">GOLDENCRAFT <span style="font-size:1rem;">AI</span></div>
+    <div class="nav-links">
+        <a data-nav="home">Home</a>
+        <a data-nav="about">About</a>
+        <a data-nav="howitworks">Process</a>
+        <a data-nav="benefits">Benefits</a>
+        <a data-nav="contact">Contact</a>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-content fade-up">
+            <div class="tagline" style="font-size: 1.2rem; color:var(--gold);"><i class="fas fa-crown"></i> NAVEEN M presents</div>
+            <h1>Where Tradition Meets <span class="gold-text">Modern Innovation.</span></h1>
+            <p style="font-size: 1.2rem; margin: 1.5rem 0; color: #ddd;">GoldenCraft AI — AI-driven custom jewelry, transparent pricing & live artisan collaboration.</p>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <button class="btn-gold" id="exploreBtn"><i class="fas fa-gem"></i> Start Crafting</button>
+                <button class="btn-outline" id="watchBtn"><i class="fas fa-play"></i> Watch Journey</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <h2 class="fade-up">The New Era of Goldsmithing</h2>
+            <p class="section-sub fade-up">GoldenCraft AI merges centuries-old jewelry craftsmanship with AI, empowering both customers and master artisans.</p>
+            <div class="grid-2">
+                <div class="card fade-up"><i class="fas fa-gem"></i><h3>Vision</h3><p>World's #1 personalized jewelry ecosystem where every story shines in gold, powered by innovation.</p></div>
+                <div class="card fade-up"><i class="fas fa-microchip"></i><h3>AI Craftsmanship</h3><p>Real-time tracking, blockchain verification & co-design tools — modernizing traditional goldsmith trade.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems & Solutions -->
+    <section style="background: #0E0E0E;">
+        <div class="container">
+            <h2 class="fade-up">Breaking Traditional Barriers</h2>
+            <div class="grid-2">
+                <div class="card fade-up"><i class="fas fa-exclamation-triangle"></i><h3>Industry Challenges</h3><ul style="margin-top:1rem; list-style:none;"><li>🔒 No transparency</li><li>🎨 Limited customization</li><li>🕵️ Hard to find trusted artisans</li></ul></div>
+                <div class="card fade-up"><i class="fas fa-lightbulb"></i><h3>AI Solutions</h3><ul style="margin-top:1rem; list-style:none;"><li>💰 Real-time pricing breakdown</li><li>✨ Infinite custom design + AI</li><li>🤝 Verified artisan network</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="howitworks">
+        <div class="container">
+            <h2 class="fade-up">How GoldenCraft AI Works</h2>
+            <div class="grid-3" style="margin-top: 2rem;">
+                <div class="card fade-up"><i class="fas fa-pen-ruler"></i><h3>1. Share Vision</h3><p>Inspiration + AI design suggestions.</p></div>
+                <div class="card fade-up"><i class="fas fa-handshake"></i><h3>2. Match Artisan</h3><p>Connect with skilled goldsmiths.</p></div>
+                <div class="card fade-up"><i class="fas fa-chart-line"></i><h3>3. Transparent Pricing</h3><p>Breakdown of all costs.</p></div>
+                <div class="card fade-up"><i class="fas fa-eye"></i><h3>4. Live Tracking</h3><p>Video & photo updates.</p></div>
+                <div class="card fade-up"><i class="fas fa-gem"></i><h3>5. Final Polish</h3><p>Certificate & delivery.</p></div>
+                <div class="card fade-up"><i class="fas fa-infinity"></i><h3>6. Digital Vault</h3><p>Design preserved forever.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" style="background: #0C0C0C;">
+        <div class="container">
+            <div class="grid-2">
+                <div class="fade-up"><i class="fas fa-user-astronaut" style="font-size:2rem;color:var(--gold);"></i><h3 style="font-size:1.8rem;">For Customers</h3><ul style="list-style:none; line-height:2;"><li>✅ Endless personalization</li><li>✅ Direct artisan chat</li><li>✅ Ethical sourcing</li></ul></div>
+                <div class="fade-up"><i class="fas fa-hammer" style="font-size:2rem;color:var(--gold);"></i><h3 style="font-size:1.8rem;">For Artisans</h3><ul style="list-style:none; line-height:2;"><li>✅ Global exposure</li><li>✅ Fair payments</li><li>✅ Preserve heritage</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concept Showcase -->
+    <section>
+        <div class="container">
+            <h2 class="fade-up">Concept Studio by NAVEEN M</h2>
+            <div class="showcase-grid">
+                <div class="concept-item fade-up floating-icon"><i class="fas fa-dharmachakra"></i><h3>Heritage Lumina</h3><p>Cultural revival</p></div>
+                <div class="concept-item fade-up floating-icon"><i class="fas fa-feather-alt"></i><h3>Celestial Feather</h3><p>Platinum & diamonds</p></div>
+                <div class="concept-item fade-up floating-icon"><i class="fas fa-waveform"></i><h3>AI Flux Ring</h3><p>Generative pattern</p></div>
+                <div class="concept-item fade-up floating-icon"><i class="fas fa-leaf"></i><h3>Botanic Grace</h3><p>Nature-inspired</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision -->
+    <section style="background: radial-gradient(circle at 20% 30%, #121212, #010101);">
+        <div class="container text-center">
+            <h2 class="fade-up">Venture-backed Vision</h2>
+            <p style="max-width:700px; margin:1rem auto" class="fade-up">Global standard for personalized artisan jewelry, merging storytelling, technology, and ethical luxury.</p>
+            <div class="grid-2">
+                <div class="card fade-up"><i class="fas fa-chart-line"></i><h3>Mission</h3><p>Empower 10,000+ goldsmiths by 2028</p></div>
+                <div class="card fade-up"><i class="fas fa-globe-asia"></i><h3>Impact</h3><p>Zero waste, fair trade, revival of ancient techniques</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section>
+        <div class="container">
+            <h2 class="fade-up">Trusted by Visionaries</h2>
+            <div class="grid-3">
+                <div class="testimonial-card fade-up"><div class="stars">★★★★★</div><p>"GoldenCraft AI made my heirloom dream real. The live tracking felt like magic."</p><h4>— Ananya S.</h4></div>
+                <div class="testimonial-card fade-up"><div class="stars">★★★★★</div><p>"As an artisan, I finally have a global stage. Fair pay & creative freedom."</p><h4>— Vikram J.</h4></div>
+                <div class="testimonial-card fade-up"><div class="stars">★★★★★</div><p>"Complete transparency. The final piece exceeded expectations."</p><h4>— Olivia Chen</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="background: #0b0b0b;">
+        <div class="container">
+            <h2 class="fade-up">Frequently Asked Questions</h2>
+            <div id="faqContainer" class="fade-up">
+                <div class="faq-item"><div class="faq-question">How long does custom jewelry take? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Typically 2–5 weeks. AI timeline estimator gives exact milestones.</div></div>
+                <div class="faq-item"><div class="faq-question">Can I talk to goldsmith directly? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Yes! Real-time chat & video consultations.</div></div>
+                <div class="faq-item"><div class="faq-question">Is pricing transparent? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Absolutely. Gold rate + gem + artisan fee + shipping — no hidden costs.</div></div>
+                <div class="faq-item"><div class="faq-question">Do you offer warranty? <i class="fas fa-chevron-down"></i></div><div class="faq-answer">Lifetime maintenance & authenticity certificate.</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Personal Details -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="fade-up">Begin Your Bespoke Journey</h2>
+            <div class="contact-card fade-up">
+                <form id="inquiryForm">
+                    <input type="text" placeholder="Full Name *" id="nameInput" required>
+                    <input type="email" placeholder="Email Address *" id="emailInput" required>
+                    <textarea rows="3" placeholder="Describe your dream jewelry or occasion..." id="messageInput"></textarea>
+                    <button type="submit" class="btn-gold" style="width:100%; justify-content:center; margin-top:1rem;"><i class="fas fa-gem"></i> Send Inquiry</button>
+                    <p id="formFeedback" style="margin-top:1rem; color:var(--gold);"></p>
+                </form>
+            </div>
+            <div class="personal-detail-card fade-up">
+                <i class="fas fa-id-card" style="font-size: 2rem; color: var(--gold);"></i>
+                <h3 style="margin: 0.5rem 0;">Crafted by <span style="color:var(--gold);">NAVEEN M</span></h3>
+                <p><i class="fas fa-map-marker-alt"></i> 📍 164, Gandhi Salai, Alangudi - 622301</p>
+                <p><i class="fas fa-phone-alt"></i> 📞 +91 7904369044</p>
+                <p><i class="fas fa-envelope"></i> 📧 naveen@goldencraft.ai</p>
+                <p style="margin-top: 10px;">✨ For direct inquiries, feel free to connect — Let's craft legacy together.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2025 GoldenCraft AI — Where Traditional Craftsmanship Meets Modern Innovation.</p>
+        <p>Designed & Engineered by <strong style="color:#D4AF37;">NAVEEN M</strong> | 164, Gandhi Salai, Alangudi | +91 7904369044</p>
+    </footer>
+</main>
+
+<script>
+    // Toast notification system (No alert messages)
+    function showToast(message, isError = false) {
+        const existingToast = document.querySelector('.toast-notification');
+        if(existingToast) existingToast.remove();
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-circle' : 'fa-gem'}" style="margin-right: 10px;"></i> ${message}`;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 500);
+        }, 2800);
+    }
+
+    // Intersection Observer for fade animations
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('appear');
+            }
+        });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => observer.observe(el));
+
+    // FAQ Accordion with smooth toggle
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const icon = item.querySelector('.fa-chevron-down');
+        if(icon) icon.style.transition = 'transform 0.3s';
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(i => {
+                if(i !== item && i.classList.contains('active')) {
+                    i.classList.remove('active');
+                    const otherIcon = i.querySelector('.fa-chevron-down');
+                    if(otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+            item.classList.toggle('active');
+            if(icon) {
+                if(item.classList.contains('active')) icon.style.transform = 'rotate(180deg)';
+                else icon.style.transform = 'rotate(0deg)';
+            }
+        });
+    });
+
+    // ========== ALL BUTTONS FULLY FUNCTIONAL (NO ALERTS) ==========
+    
+    // Hero Buttons - Start Crafting & Watch Journey
+    const exploreBtn = document.getElementById('exploreBtn');
+    const watchBtn = document.getElementById('watchBtn');
+    
+    if(exploreBtn) {
+        exploreBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast("✨ Welcome NAVEEN M! Let's begin your custom jewelry journey");
+            const howSection = document.getElementById('howitworks');
+            if(howSection) howSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    
+    if(watchBtn) {
+        watchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast("🌟 GoldenCraft AI: AI Design + Artisan Collaboration + Live Tracking");
+        });
+    }
+    
+    // Make ALL cards, concept items, testimonial cards interactive
+    const allInteractive = document.querySelectorAll('.card, .concept-item, .testimonial-card');
+    allInteractive.forEach(el => {
+        el.addEventListener('click', (e) => {
+            if(e.target.closest('.btn-gold') || e.target.closest('.btn-outline')) return;
+            let title = '';
+            if(el.querySelector('h3')) title = el.querySelector('h3').innerText;
+            else if(el.querySelector('h4')) title = el.querySelector('h4').innerText;
+            else title = 'design experience';
+            showToast(`✨ ${title} — ready to create your masterpiece`);
+        });
+    });
+    
+    // Navigation links smooth scroll with toast
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('data-nav');
+            const targetSection = document.getElementById(targetId);
+            if(targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                showToast(`Navigating to ${targetId.charAt(0).toUpperCase() + targetId.slice(1)}`);
+            }
+        });
+    });
+    
+    // Contact Form Submission - No alerts, only toast and feedback
+    const contactForm = document.getElementById('inquiryForm');
+    const feedbackPara = document.getElementById('formFeedback');
+    if(contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nameVal = document.getElementById('nameInput').value.trim();
+            const emailVal = document.getElementById('emailInput').value.trim();
+            if(!nameVal || !emailVal) {
+                feedbackPara.innerHTML = "❌ Please enter your name and email address.";
+                showToast("Please fill in name and email", true);
+                return;
+            }
+            feedbackPara.innerHTML = `✅ Thank you ${nameVal}! Your design inquiry has been received. NAVEEN M & his artisan team will contact you within 24h.`;
+            showToast(`✅ Inquiry sent, ${nameVal}! We'll reach out soon.`);
+            contactForm.reset();
+            setTimeout(() => {
+                if(feedbackPara) feedbackPara.innerHTML = "";
+            }, 5000);
+        });
+    }
+    
+    // Additional global button handler for any other buttons
+    document.querySelectorAll('.btn-gold, .btn-outline').forEach(btn => {
+        if(!btn.hasAttribute('data-listener')) {
+            btn.setAttribute('data-listener', 'true');
+            btn.addEventListener('click', (e) => {
+                if(btn.id === 'exploreBtn' || btn.id === 'watchBtn') return;
+                e.preventDefault();
+                showToast("✨ GoldenCraft AI — Let's design your legacy");
+            });
+        }
+    });
+    
+    // Welcome toast on load (no alert)
+    setTimeout(() => {
+        showToast("✨ GoldenCraft AI — Where tradition meets innovation");
+    }, 500);
+    
+    console.log("GoldenCraft AI | Fully interactive | NAVEEN M | Address: 164 Gandhi Salai, Alangudi | Contact: 7904369044");
+</script>
+</body>
+</html>
